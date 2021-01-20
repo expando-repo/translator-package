@@ -1,3 +1,14 @@
 {
-    "name": "expando-dev/translator-package"
+    "name": "expando-dev/translator-package",
+    "description": "Knihovna pro snadnější komunikaci s EXPANDO Translator API",
+    "type": "library",
+    "authors": [
+        {
+            "name": "EXPANDO",
+            "email": "radim@expan.do"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    }
 }
