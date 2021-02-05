@@ -9,6 +9,14 @@
         }
     ],
     "require": {
-        "php": ">=7.4"
+        "php": ">=7.4",
+        "league/oauth2-client": "^2.6",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Expando\\Translator\\": "src/"
+        }
     }
 }
