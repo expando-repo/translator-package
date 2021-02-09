@@ -19,5 +19,6 @@
 
     echo 'Status: ' . $response->getStatus() . '<br />';
     echo 'Hash: ' . $response->getHash() . '<br />';
+    echo 'Product ID: ' . $response->getProductId() . '<br />';
     echo 'Title: ' . $response->getTitle() . '<br />';
     echo 'Description: ' . $response->getDescription() . '<br />';

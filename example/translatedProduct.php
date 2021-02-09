@@ -28,6 +28,7 @@
     foreach ($response->getProducts() as $product) {
         echo '<br />';
         echo 'Hash: ' . $product->getHash() . '<br />';
+        echo 'Product ID: ' . $product->getProductId() . '<br />';
         echo 'Title: ' . $product->getTitle() . '<br />';
         echo 'Description: ' . $product->getDescription() . '<br />';
     }

@@ -6,9 +6,9 @@ require_once 'boot.php';
 
 try {
     $login = new \Expando\Translator\Login(
-        1,
-        '4XJ27RN0uOiiTtEWvD1GpTQIGITVIKE1nEBVupha',
-        'http://local.php80/translator/example/redirect.php',
+        14,
+        'KacdritiVE3fO9GsIgam6PCCMbXtAfJV5fsYYgcl',
+        'http://translator-package.local/redirect.php',
         'http://translator.local'
     );
     $login->addScope('read-translation');

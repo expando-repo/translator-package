@@ -12,7 +12,8 @@ use Expando\Translator\Response\Product\TranslatedResponse;
 
 class ProductRequest extends Base implements IRequest
 {
-    private int $project_id;
+    private ?int $product_id = null;
+    private ?int $project_id = null;
     private string $title;
     private string $description;
     private string $language_from;
@@ -22,6 +23,14 @@ class ProductRequest extends Base implements IRequest
     const
         CATEGORY_IMAGE_URL = 'image-url'
     ;
+
+    /**
+     * @param int|null $product_id
+     */
+    public function setProductId(?int $product_id): void
+    {
+        $this->product_id = $product_id;
+    }
 
     /**
      * @param int $project_id
@@ -74,7 +83,8 @@ class ProductRequest extends Base implements IRequest
     public function asArray(): array
     {
         return [
-            'product_id' => $this->project_id,
+            'product_id' => $this->product_id,
+            'project_id' => $this->project_id,
             'title' => $this->title,
             'description' => $this->description,
             'language_from' => $this->language_from,

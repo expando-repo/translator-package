@@ -9,6 +9,7 @@ use Expando\Translator\IResponse;
 
 class GetResponse implements IResponse
 {
+    protected ?int $product_id = null;
     protected ?string $title = null;
     protected ?string $description = null;
     protected string $status;
@@ -26,8 +27,17 @@ class GetResponse implements IResponse
         }
         $this->status = $data['status'];
         $this->hash = $data['hash'];
+        $this->product_id = $data['product_id'] ?? null;
         $this->title = $data['title'] ?? null;
         $this->description = $data['description'] ?? null;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getProductId(): ?int
+    {
+        return $this->product_id;
     }
 
     /**
