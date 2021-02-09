@@ -3,7 +3,7 @@
 
     $translator = new \Expando\Translator\Translator();
     $translator->setToken($_SESSION['translator_token'] ?? null);
-    $translator->setUrl('http://translator.local');
+    $translator->setUrl(URL);
 
     if (!$translator->isLogged()) {
         die('Translator is not logged');
@@ -16,7 +16,7 @@
         $product->setDescription('Testovací popis');
         $product->setLanguageFrom(\Expando\Translator\Language::cs_CZ);
         $product->setLanguageTo(\Expando\Translator\Language::en_GB);
-        $product->setProjectId(7);
+        //$product->setProjectId(7);
         $product->addImageUrl('https://metalshopcz.vshcdn.net/images/produkty/thumb2/metalic_003.JPG');
         $product->addImageUrl('https://metalshopcz.vshcdn.net/images/produkty/thumb2/pgg_w20_labagv_dark_grey_1_2.jpg');
 

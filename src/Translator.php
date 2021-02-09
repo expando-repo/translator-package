@@ -152,7 +152,8 @@ class Translator
         $data = (array) json_decode($return, true);
 
         if (!$data || ($data['status'] ?? null) === null) {
-            throw new TranslatorException('Response data is bad');
+            $message = ($data['message'] ?? null);
+            throw new TranslatorException('Response data is bad' . ($message ? ' ('.$message.')' : ''));
         }
 
         if ($data['status'] === 'error') {

@@ -3,7 +3,7 @@
 
     $translator = new \Expando\Translator\Translator();
     $translator->setToken($_SESSION['translator_token'] ?? null);
-    $translator->setUrl('http://translator.local');
+    $translator->setUrl(URL);
 
     if (!$translator->isLogged()) {
         die('Translator is not logged');

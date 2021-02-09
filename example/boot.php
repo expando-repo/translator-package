@@ -4,4 +4,6 @@
     error_reporting(E_ALL);
     session_start();
 
+    define('URL', 'http://translator.popshop.cz');
+
     require_once __DIR__ . '/../vendor/autoload.php';
