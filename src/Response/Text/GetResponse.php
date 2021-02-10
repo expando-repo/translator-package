@@ -12,6 +12,7 @@ class GetResponse implements IResponse
     protected ?int $custom_id = null;
     protected ?string $custom_name = null;
     protected ?string $text = null;
+    protected string $language;
     protected string $status;
     protected string $hash;
 
@@ -27,6 +28,7 @@ class GetResponse implements IResponse
         }
         $this->status = $data['status'];
         $this->hash = $data['hash'];
+        $this->language = $data['language'];
         $this->custom_id = $data['custom_id'] ?? null;
         $this->custom_name = $data['custom_name'] ?? null;
         $this->text = $data['text'] ?? null;
@@ -70,5 +72,13 @@ class GetResponse implements IResponse
     public function getHash(): string
     {
         return $this->hash;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getLanguage(): string
+    {
+        return $this->language;
     }
 }

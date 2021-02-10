@@ -31,5 +31,6 @@
         echo 'Custom id: ' . $text->getCustomId() . '<br />';
         echo 'Custom name: ' . $text->getCustomName() . '<br />';
         echo 'Text: ' . $text->getText() . '<br />';
+        echo 'Language: ' . $text->getLanguage() . '<br />';
     }
 

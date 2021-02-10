@@ -22,3 +22,4 @@
     echo 'Custom id: ' . $response->getCustomId() . '<br />';
     echo 'Custom name: ' . $response->getCustomName() . '<br />';
     echo 'Text: ' . $response->getText() . '<br />';
+    echo 'Language: ' . $response->getLanguage() . '<br />';
