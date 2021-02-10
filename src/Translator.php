@@ -6,9 +6,10 @@ namespace Expando\Translator;
 
 use Expando\Translator\Exceptions\TranslatorException;
 use Expando\Translator\Request\ProductRequest;
+use Expando\Translator\Request\TextRequest;
 use Expando\Translator\Response\PostResponse;
-use Expando\Translator\Response\Product\GetResponse;
-use Expando\Translator\Response\Product\TranslatedResponse;
+use Expando\Translator\Response\Product;
+use Expando\Translator\Response\Text;
 
 class Translator
 {
@@ -67,6 +68,10 @@ class Translator
             $data = $this->sendToTranslator('/products/', 'POST', $request->asArray());
             $result = new PostResponse($data);
         }
+        else if ($request instanceof TextRequest) {
+            $data = $this->sendToTranslator('/texts/', 'POST', $request->asArray());
+            $result = new PostResponse($data);
+        }
         else {
             throw new TranslatorException('Request not defined');
         }
@@ -75,11 +80,11 @@ class Translator
     }
 
     /**
-     * @param GetResponse $product
+     * @param Product\GetResponse $product
      * @return bool
      * @throws TranslatorException
      */
-    public function commitProduct(GetResponse $product): bool
+    public function commitProduct(Product\GetResponse $product): bool
     {
         if (!$this->isLogged()) {
             throw new TranslatorException('Translator is not logged');
@@ -90,32 +95,76 @@ class Translator
     }
 
     /**
-     * @param string $hash
-     * @return GetResponse
+     * @param Text\GetResponse $text
+     * @return bool
      * @throws TranslatorException
      */
-    public function getProduct(string $hash): GetResponse
+    public function commitText(Text\GetResponse $text): bool
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/texts/commit/' . $text->getHash() . '/', 'PUT');
+        return $data['status'] === 'success';
+    }
+
+    /**
+     * @param string $hash
+     * @return Product\GetResponse
+     * @throws TranslatorException
+     */
+    public function getProduct(string $hash): Product\GetResponse
     {
         if (!$this->isLogged()) {
             throw new TranslatorException('Translator is not logged');
         }
 
         $data = $this->sendToTranslator('/products/' . $hash . '/', 'GET');
-        return new GetResponse($data);
+        return new Product\GetResponse($data);
     }
 
     /**
-     * @return TranslatedResponse
+     * @param string $hash
+     * @return Text\GetResponse
      * @throws TranslatorException
      */
-    public function listTranslatedProduct(): TranslatedResponse
+    public function getText(string $hash): Text\GetResponse
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/texts/' . $hash . '/', 'GET');
+        return new Text\GetResponse($data);
+    }
+
+    /**
+     * @return Product\TranslatedResponse
+     * @throws TranslatorException
+     */
+    public function listTranslatedProducts(): Product\TranslatedResponse
     {
         if (!$this->isLogged()) {
             throw new TranslatorException('Translator is not logged');
         }
 
         $data = $this->sendToTranslator('/products/translated/', 'GET');
-        return new TranslatedResponse($data);
+        return new Product\TranslatedResponse($data);
+    }
+
+    /**
+     * @return Text\TranslatedResponse
+     * @throws TranslatorException
+     */
+    public function listTranslatedTexts(): Text\TranslatedResponse
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/texts/translated/', 'GET');
+        return new Text\TranslatedResponse($data);
     }
 
     /**

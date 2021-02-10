@@ -9,6 +9,7 @@ use Expando\Translator\IRequest;
 use Expando\Translator\Response\Product\GetResponse;
 use Expando\Translator\Response\Product\PostResponse;
 use Expando\Translator\Response\Product\TranslatedResponse;
+use Expando\Translator\TextType;
 
 class ProductRequest extends Base implements IRequest
 {
@@ -85,8 +86,8 @@ class ProductRequest extends Base implements IRequest
         return [
             'product_id' => $this->product_id,
             'project_id' => $this->project_id,
-            'title' => $this->title,
-            'description' => $this->description,
+            TextType::PRODUCT_TITLE => $this->title,
+            TextType::PRODUCT_DESCRIPTION => $this->description,
             'language_from' => $this->language_from,
             'language_to' => $this->language_to,
             'addon_data' => $this->addon_data,

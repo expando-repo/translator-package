@@ -2,7 +2,7 @@
     require_once 'boot.php';
     $translator = new \Expando\Translator\Translator();
     $translator->setToken($_SESSION['translator_token'] ?? null);
-    $translator->setUrl('http://translator.local');
+    $translator->setUrl(URL);
 ?>
 
 <?php if (!$translator->isLogged()) { ?>
@@ -12,6 +12,11 @@
         <li><a href="addProduct.php">add product</a></li>
         <li><a href="getProduct.php?hash=hash-from-url">get product</a></li>
         <li><a href="translatedProduct.php">get translated products</a></li>
+        <li></li>
+        <li><a href="addText.php">add text</a></li>
+        <li><a href="getText.php?hash=hash-from-url">get text</a></li>
+        <li><a href="translatedText.php">get translated texts</a></li>
+        <li></li>
         <li><a href="logout.php">logout (delete token)</a></li>
     </ul>
 <?php } ?>

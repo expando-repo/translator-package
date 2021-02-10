@@ -11,13 +11,13 @@
 
     try {
         // return 10 not commited products
-        $response = $translator->listTranslatedProducts();
-        foreach ($response->getProducts() as $product) {
+        $response = $translator->listTranslatedTexts();
+        foreach ($response->getTexts() as $text) {
 
             // SAVE TEXT implement
 
             // confirm saving text
-            $translator->commitProduct($product);
+            $translator->commitText($text);
         }
     }
     catch (\Expando\Translator\Exceptions\TranslatorException $e) {
@@ -25,11 +25,11 @@
     }
 
     echo 'Status: ' . $response->getStatus() . '<br />';
-    foreach ($response->getProducts() as $product) {
+    foreach ($response->getTexts() as $text) {
         echo '<br />';
-        echo 'Hash: ' . $product->getHash() . '<br />';
-        echo 'Product ID: ' . $product->getProductId() . '<br />';
-        echo 'Title: ' . $product->getTitle() . '<br />';
-        echo 'Description: ' . $product->getDescription() . '<br />';
+        echo 'Hash: ' . $text->getHash() . '<br />';
+        echo 'Custom id: ' . $text->getCustomId() . '<br />';
+        echo 'Custom name: ' . $text->getCustomName() . '<br />';
+        echo 'Text: ' . $text->getText() . '<br />';
     }
 
