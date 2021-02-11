@@ -17,6 +17,8 @@
         <li><a href="getText.php?hash=hash-from-url">get text</a></li>
         <li><a href="translatedText.php">get translated texts</a></li>
         <li></li>
+        <li><a href="addSkipText.php">add skip text</a></li>
+        <li></li>
         <li><a href="logout.php">logout (delete token)</a></li>
     </ul>
 <?php } ?>

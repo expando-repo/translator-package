@@ -6,10 +6,8 @@ namespace Expando\Translator\Request;
 
 use Expando\Translator\Exceptions\TranslatorException;
 use Expando\Translator\IRequest;
-use Expando\Translator\Response\Product\GetResponse;
-use Expando\Translator\Response\Product\PostResponse;
-use Expando\Translator\Response\Product\TranslatedResponse;
-use Expando\Translator\TextType;
+use Expando\Translator\Type\TextType;
+use Expando\Translator\Type\Language;
 
 class ProductRequest extends Base implements IRequest
 {
@@ -59,17 +57,27 @@ class ProductRequest extends Base implements IRequest
 
     /**
      * @param string $language_from
+     * @throws TranslatorException
      */
     public function setLanguageFrom(string $language_from): void
     {
+        if (!in_array($language_from, Language::getAll())) {
+            throw new TranslatorException('Language is not valid');
+        }
+
         $this->language_from = $language_from;
     }
 
     /**
      * @param string $language_to
+     * @throws TranslatorException
      */
     public function setLanguageTo(string $language_to): void
     {
+        if (!in_array($language_to, Language::getAll())) {
+            throw new TranslatorException('Language is not valid');
+        }
+
         $this->language_to = $language_to;
     }
 

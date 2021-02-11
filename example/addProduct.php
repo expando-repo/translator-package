@@ -14,8 +14,8 @@
         $product->setProductId(rand(1000, 9999));
         $product->setTitle('Testovací title');
         $product->setDescription('Testovací popis');
-        $product->setLanguageFrom(\Expando\Translator\Language::cs_CZ);
-        $product->setLanguageTo(\Expando\Translator\Language::en_GB);
+        $product->setLanguageFrom(\Expando\Translator\Type\Language::cs_CZ);
+        $product->setLanguageTo(\Expando\Translator\Type\Language::en_GB);
         //$product->setProjectId(7);
         $product->addImageUrl('https://metalshopcz.vshcdn.net/images/produkty/thumb2/metalic_003.JPG');
         $product->addImageUrl('https://metalshopcz.vshcdn.net/images/produkty/thumb2/pgg_w20_labagv_dark_grey_1_2.jpg');

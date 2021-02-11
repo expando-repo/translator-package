@@ -6,8 +6,8 @@ require_once 'boot.php';
 
 try {
     $login = new \Expando\Translator\Login(
-        1,
-        'Fqar1f95sfHKTzF5zFFQwzBm0ZNeGajBEUG6tcx7',
+        13,
+        'I08LZCkzsV45drCGLSyMsxh1paqHjwdknDZCqKKX',
         'http://translator-package.local/redirect.php',
         URL
     );

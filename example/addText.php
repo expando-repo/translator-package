@@ -1,6 +1,6 @@
 <?php
 
-use Expando\Translator\TextType;
+use Expando\Translator\Type\TextType;
 
 require_once 'boot.php';
 
@@ -16,8 +16,8 @@ require_once 'boot.php';
         $text = new \Expando\Translator\Request\TextRequest();
         $text->setText('Nějaký text k překladu');
         $text->setTextType(TextType::PRODUCT_CATEGORY);
-        $text->setLanguageFrom(\Expando\Translator\Language::cs_CZ);
-        $text->setLanguageTo(\Expando\Translator\Language::en_GB);
+        $text->setLanguageFrom(\Expando\Translator\Type\Language::cs_CZ);
+        $text->setLanguageTo(\Expando\Translator\Type\Language::en_GB);
         // $text->setProjectId(7);
         $text->setCustom('category', 124);
 

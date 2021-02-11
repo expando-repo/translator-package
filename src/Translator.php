@@ -6,6 +6,7 @@ namespace Expando\Translator;
 
 use Expando\Translator\Exceptions\TranslatorException;
 use Expando\Translator\Request\ProductRequest;
+use Expando\Translator\Request\SkipTextRequest;
 use Expando\Translator\Request\TextRequest;
 use Expando\Translator\Response\PostResponse;
 use Expando\Translator\Response\Product;
@@ -77,6 +78,26 @@ class Translator
         }
 
         return $result;
+    }
+
+    /**
+     * @param IRequest $request
+     * @return bool
+     * @throws TranslatorException
+     */
+    public function add(IRequest $request): bool
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        if ($request instanceof SkipTextRequest) {
+            $data = $this->sendToTranslator('/skip-texts/', 'POST', $request->asArray());
+        }
+        else {
+            throw new TranslatorException('Request not defined');
+        }
+        return $data['status'] === 'success';
     }
 
     /**

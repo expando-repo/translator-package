@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Expando\Translator\Request;
 
+use Expando\Translator\Exceptions\TranslatorException;
 use Expando\Translator\IRequest;
+use Expando\Translator\Type\TextType;
 
 class TextRequest extends Base implements IRequest
 {
@@ -28,9 +30,13 @@ class TextRequest extends Base implements IRequest
 
     /**
      * @param string $text_type
+     * @throws TranslatorException
      */
     public function setTextType(string $text_type): void
     {
+        if (!in_array($text_type, TextType::getAll())) {
+            throw new TranslatorException('Text type is not valid');
+        }
         $this->text_type = $text_type;
     }
 
