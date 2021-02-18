@@ -9,6 +9,7 @@ class TextType
     const
         PRODUCT_TITLE = 'product_title',
         PRODUCT_DESCRIPTION = 'product_description',
+        PRODUCT_DESCRIPTION2 = 'product_description2',
         PRODUCT_PARAMETER = 'product_parameter',
         PRODUCT_CATEGORY = 'category',
         TAG = 'tag',

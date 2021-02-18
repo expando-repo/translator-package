@@ -22,4 +22,5 @@
     echo 'Product ID: ' . $response->getProductId() . '<br />';
     echo 'Title: ' . $response->getTitle() . '<br />';
     echo 'Description: ' . $response->getDescription() . '<br />';
+    echo 'Description2: ' . $response->getDescription2() . '<br />';
     echo 'Language: ' . $response->getLanguage() . '<br />';

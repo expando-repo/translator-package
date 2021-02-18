@@ -14,6 +14,7 @@
         $product->setProductId(rand(1000, 9999));
         $product->setTitle('Testovací title');
         $product->setDescription('Testovací popis');
+        $product->setDescription2('Testovací popis 2');
         $product->setLanguageFrom(\Expando\Translator\Type\Language::cs_CZ);
         $product->setLanguageTo(\Expando\Translator\Type\Language::en_GB);
         //$product->setProjectId(7);

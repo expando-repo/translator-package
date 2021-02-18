@@ -31,6 +31,7 @@
         echo 'Product ID: ' . $product->getProductId() . '<br />';
         echo 'Title: ' . $product->getTitle() . '<br />';
         echo 'Description: ' . $product->getDescription() . '<br />';
+        echo 'Description2: ' . $product->getDescription2() . '<br />';
         echo 'Language: ' . $product->getLanguage() . '<br />';
     }
 
