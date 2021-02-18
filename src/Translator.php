@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Expando\Translator;
 
 use Expando\Translator\Exceptions\TranslatorException;
+use Expando\Translator\Request\GroupRequest;
 use Expando\Translator\Request\ProductRequest;
 use Expando\Translator\Request\SkipTextRequest;
 use Expando\Translator\Request\TextRequest;
 use Expando\Translator\Response\PostResponse;
 use Expando\Translator\Response\Product;
 use Expando\Translator\Response\Text;
+use Expando\Translator\Response\Group;
 
 class Translator
 {
@@ -73,6 +75,10 @@ class Translator
             $data = $this->sendToTranslator('/texts/', 'POST', $request->asArray());
             $result = new PostResponse($data);
         }
+        else if ($request instanceof GroupRequest) {
+            $data = $this->sendToTranslator('/groups/', 'POST', $request->asArray());
+            $result = new PostResponse($data);
+        }
         else {
             throw new TranslatorException('Request not defined');
         }
@@ -131,6 +137,21 @@ class Translator
     }
 
     /**
+     * @param Group\GetResponse $text
+     * @return bool
+     * @throws TranslatorException
+     */
+    public function commitGroup(Group\GetResponse $text): bool
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/groups/commit/' . $text->getHash() . '/', 'PUT');
+        return $data['status'] === 'success';
+    }
+
+    /**
      * @param string $hash
      * @return Product\GetResponse
      * @throws TranslatorException
@@ -161,6 +182,21 @@ class Translator
     }
 
     /**
+     * @param string $hash
+     * @return Group\GetResponse
+     * @throws TranslatorException
+     */
+    public function getGroup(string $hash): Group\GetResponse
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/groups/' . $hash . '/', 'GET');
+        return new Group\GetResponse($data);
+    }
+
+    /**
      * @return Product\TranslatedResponse
      * @throws TranslatorException
      */
@@ -186,6 +222,20 @@ class Translator
 
         $data = $this->sendToTranslator('/texts/translated/', 'GET');
         return new Text\TranslatedResponse($data);
+    }
+
+    /**
+     * @return Group\TranslatedResponse
+     * @throws TranslatorException
+     */
+    public function listTranslatedGroups(): Group\TranslatedResponse
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/groups/translated/', 'GET');
+        return new Group\TranslatedResponse($data);
     }
 
     /**
@@ -218,7 +268,10 @@ class Translator
         if (!$return) {
             throw new TranslatorException('Translator did not return a correct response');
         }
-        //print_r($return);
+        if ($_GET['debug'] ?? null) {
+            echo '<pre>';
+            print_r($return);
+        }
         $data = (array) json_decode($return, true);
 
         if (!$data || ($data['status'] ?? null) === null) {

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Expando\Translator\Response\Text;
+namespace Expando\Translator\Response\Group;
 
 use Expando\Translator\Exceptions\TranslatorException;
 use Expando\Translator\IResponse;
 
 class GetResponse implements IResponse
 {
-    protected ?string $custom_id = null;
+    protected ?int $custom_id = null;
     protected ?string $custom_name = null;
-    protected ?string $text = null;
+    protected array $texts = [];
     protected string $language;
     protected string $status;
     protected string $hash;
@@ -31,13 +31,13 @@ class GetResponse implements IResponse
         $this->language = $data['language'];
         $this->custom_id = $data['custom_id'] ?? null;
         $this->custom_name = $data['custom_name'] ?? null;
-        $this->text = $data['text'] ?? null;
+        $this->texts = $data['texts'] ?? [];
     }
 
     /**
-     * @return string|mixed|null
+     * @return int|mixed|null
      */
-    public function getCustomId(): ?string
+    public function getCustomId(): ?int
     {
         return $this->custom_id;
     }
@@ -51,11 +51,11 @@ class GetResponse implements IResponse
     }
 
     /**
-     * @return mixed|string|null
+     * @return array
      */
-    public function getText(): ?string
+    public function getTexts(): array
     {
-        return $this->text;
+        return $this->texts;
     }
 
     /**

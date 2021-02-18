@@ -14,7 +14,7 @@ require_once 'boot.php';
 
     try {
         $text = new \Expando\Translator\Request\TextRequest();
-        $text->setText('Nějaký text k překladu');
+        $text->setText('Nějasdaký teasdsxt k přasdekladu');
         $text->setTextType(TextType::PRODUCT_CATEGORY);
         $text->setLanguageFrom(\Expando\Translator\Type\Language::cs_CZ);
         $text->setLanguageTo(\Expando\Translator\Type\Language::en_GB);
