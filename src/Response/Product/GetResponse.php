@@ -6,6 +6,7 @@ namespace Expando\Translator\Response\Product;
 
 use Expando\Translator\Exceptions\TranslatorException;
 use Expando\Translator\IResponse;
+use Expando\Translator\Type\TextType;
 
 class GetResponse implements IResponse
 {
@@ -31,9 +32,9 @@ class GetResponse implements IResponse
         $this->hash = $data['hash'];
         $this->product_id = $data['product_id'] ?? null;
         $this->language = $data['language'];
-        $this->title = $data['title'] ?? null;
-        $this->description = $data['description'] ?? null;
-        $this->description2 = $data['description2'] ?? null;
+        $this->title = $data[TextType::PRODUCT_TITLE] ?? null;
+        $this->description = $data[TextType::PRODUCT_DESCRIPTION] ?? null;
+        $this->description2 = $data[TextType::PRODUCT_DESCRIPTION2] ?? null;
     }
 
     /**
