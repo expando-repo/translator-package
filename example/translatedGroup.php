@@ -30,7 +30,7 @@
         echo 'Hash: ' . $group->getHash() . '<br />';
         echo 'Custom id: ' . $group->getCustomId() . '<br />';
         echo 'Custom name: ' . $group->getCustomName() . '<br />';
-        foreach ($text->getTexts() as $key => $text) {
+        foreach ($group->getTexts() as $key => $text) {
             echo 'Text (' . $key . '): ' . $text . '<br />';
         }
         echo 'Language: ' . $group->getLanguage() . '<br /><br />';
