@@ -21,7 +21,8 @@ class ProductRequest extends Base implements IRequest
     private array $addon_data = [];
 
     const
-        CATEGORY_IMAGE_URL = 'image-url'
+        CATEGORY_IMAGE_URL = 'image-url',
+        CATEGORY_PRODUCT_URL = 'product-url'
     ;
 
     /**
@@ -96,6 +97,14 @@ class ProductRequest extends Base implements IRequest
     public function addImageUrl(string $value)
     {
         $this->addon_data[self::CATEGORY_IMAGE_URL][] = $value;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setProductUrl(string $url)
+    {
+        $this->addon_data[self::CATEGORY_PRODUCT_URL][] = $url;
     }
 
     public function asArray(): array
