@@ -6,8 +6,8 @@ require_once 'boot.php';
 
 try {
     $login = new \Expando\Translator\Login(
-        13,
-        'I08LZCkzsV45drCGLSyMsxh1paqHjwdknDZCqKKX',
+        CLIENT_ID,
+        CLIENT_SECRET,
         'http://translator-package.local/redirect.php',
         URL
     );
@@ -21,6 +21,7 @@ try {
 if ($token !== null)
 {
     // save to session for example
+
     $_SESSION['translator_token'] = $token;
     header('Location: index.php');
 }

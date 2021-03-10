@@ -49,6 +49,66 @@ class Translator
     }
 
     /**
+     * @return string[]
+     */
+    public function getToken(): array
+    {
+        return [
+            'access_token' => $this->access_token,
+            'refresh_token' => $this->refresh_token,
+            'expires' => $this->expires,
+            'token' => $this->token,
+        ];
+    }
+
+    /**
+     * @return bool
+     */
+    public function isTokenExpired()
+    {
+        return $this->isLogged() && $this->expires < time();
+    }
+
+    /**
+     * @param int $clienId
+     * @param string $clientSecret
+     * @return array|null
+     */
+    public function refreshToken(int $clienId, string $clientSecret): ?array
+    {
+        $post = [
+            'grant_type' => 'refresh_token',
+            'refresh_token' => $this->refresh_token,
+            'client_id' => $clienId,
+            'client_secret' => $clientSecret,
+            'scope' => '',
+        ];
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->url . '/oauth/token');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        $data = (array) json_decode($result);
+        if ($data === false || ($data['error'] ?? null)) {
+            $this->access_token = null;
+            $this->refresh_token = null;
+            $this->expires = null;
+            $this->token = [];
+            return null;
+        }
+        $this->setToken([
+            'access_token' => $data['access_token'],
+            'refresh_token' => $data['refresh_token'],
+            'expires' => time() + $data['expires_in'],
+        ]);
+        return $data;
+    }
+
+    /**
      * @param string $url
      */
     public function setUrl(string $url): void
