@@ -30,6 +30,8 @@
         <li><a href="getGroup.php?hash=hash-from-url">get group text</a></li>
         <li><a href="translatedGroup.php">get translated groups</a></li>
         <li></li>
+        <li><a href="listProject.php">list project</a></li>
+        <li></li>
         <li><a href="logout.php">logout (delete token)</a></li>
     </ul>
 <?php } ?>

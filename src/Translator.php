@@ -11,6 +11,7 @@ use Expando\Translator\Request\SkipTextRequest;
 use Expando\Translator\Request\TextRequest;
 use Expando\Translator\Response\PostResponse;
 use Expando\Translator\Response\Product;
+use Expando\Translator\Response\Project;
 use Expando\Translator\Response\Text;
 use Expando\Translator\Response\Group;
 
@@ -239,6 +240,20 @@ class Translator
 
         $data = $this->sendToTranslator('/texts/' . $hash . '/', 'GET');
         return new Text\GetResponse($data);
+    }
+
+    /**
+     * @return Project\ListResponse
+     * @throws TranslatorException
+     */
+    public function listProjects(): Project\ListResponse
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/projects/', 'GET');
+        return new Project\ListResponse($data);
     }
 
     /**

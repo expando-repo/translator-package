@@ -13,6 +13,7 @@ try {
     );
     $login->addScope('read-translation');
     $login->addScope('create-translation');
+    $login->addScope('read-project');
     $token = $login->getToken();
 } catch (LoginException $e) {
     die($e->getMessage());
