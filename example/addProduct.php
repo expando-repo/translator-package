@@ -23,7 +23,7 @@
             $product->setDescription($_POST['product_description']);
             $product->setDescription2($_POST['product_description2'] ?? null);
             $product->setLanguageFrom(\Expando\Translator\Type\Language::cs_CZ);
-            $product->setLanguageTo(\Expando\Translator\Type\Language::lt_LT);
+            $product->setLanguageTo(\Expando\Translator\Type\Language::en_GB);
             //$product->setProjectId(7);
             $product->addImageUrl('https://metalshopcz.vshcdn.net/images/produkty/thumb2/metalic_003.JPG');
             $product->addImageUrl('https://metalshopcz.vshcdn.net/images/produkty/thumb2/pgg_w20_labagv_dark_grey_1_2.jpg');

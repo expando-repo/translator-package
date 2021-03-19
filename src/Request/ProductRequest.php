@@ -11,7 +11,7 @@ use Expando\Translator\Type\Language;
 
 class ProductRequest extends Base implements IRequest
 {
-    private ?int $product_id = null;
+    private ?string $product_id = null;
     private ?int $project_id = null;
     private string $title;
     private string $description;
@@ -26,9 +26,9 @@ class ProductRequest extends Base implements IRequest
     ;
 
     /**
-     * @param int|null $product_id
+     * @param string|null $product_id
      */
-    public function setProductId(?int $product_id): void
+    public function setProductId(?string $product_id): void
     {
         $this->product_id = $product_id;
     }

@@ -19,7 +19,7 @@ class GroupRequest extends Base implements IRequest
 
     private ?int $project_id = null;
     private ?string $custom_name = null;
-    private ?int $custom_id = null;
+    private ?string $custom_id = null;
 
     /**
      * @param int $project_id
@@ -82,12 +82,21 @@ class GroupRequest extends Base implements IRequest
 
     /**
      * @param string $custom_name
-     * @param int $custom_id
+     * @param string $custom_id
      */
-    public function setCustom(string $custom_name, int $custom_id): void
+    public function setCustom(string $custom_name, string $custom_id): void
     {
         $this->custom_name = $custom_name;
         $this->custom_id = $custom_id;
+    }
+
+    /**
+     * @param string $custom_name
+     * @param string $custom_id
+     */
+    public function setIdentifier(string $custom_name, string $custom_id): void
+    {
+        $this->setCustom($custom_name, $custom_id);
     }
 
     public function asArray(): array
