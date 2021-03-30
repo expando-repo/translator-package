@@ -320,7 +320,7 @@ class Translator
      * @return array
      * @throws TranslatorException
      */
-    private function sendToTranslator(string $action, $method, array $body = []): array
+    public function sendToTranslator(string $action, $method, array $body = []): array
     {
         $headers = array(
             'Content-Type' => 'application/json',

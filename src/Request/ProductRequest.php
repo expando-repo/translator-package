@@ -14,7 +14,7 @@ class ProductRequest extends Base implements IRequest
     private ?string $product_id = null;
     private ?int $project_id = null;
     private string $title;
-    private string $description;
+    private ?string $description = null;
     private ?string $description2 = null;
     private string $language_from;
     private string $language_to;
@@ -50,9 +50,9 @@ class ProductRequest extends Base implements IRequest
     }
 
     /**
-     * @param string $description
+     * @param string|null $description
      */
-    public function setDescription(string $description): void
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }

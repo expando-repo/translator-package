@@ -49,7 +49,9 @@ class Login
 
         $code = $_GET['code'] ?? null;
 
-        if ($code === null) {
+        if (($_GET['error'] ?? null) !== null) {
+            throw new LoginException($_GET['error'] . ' - ' . ($_GET['error_description'] ?? null));
+        } elseif ($code === null) {
             $authorizationUrl = $provider->getAuthorizationUrl([
                 'scope' => implode(' ', $this->scopes)
             ]);
