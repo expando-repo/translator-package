@@ -9,7 +9,7 @@ use Expando\Translator\IResponse;
 
 class GetResponse implements IResponse
 {
-    protected ?int $custom_id = null;
+    protected ?string $custom_id = null;
     protected ?string $custom_name = null;
     protected array $texts = [];
     protected string $language;
@@ -35,9 +35,9 @@ class GetResponse implements IResponse
     }
 
     /**
-     * @return int|mixed|null
+     * @return string|mixed|null
      */
-    public function getCustomId(): ?int
+    public function getCustomId(): ?string
     {
         return $this->custom_id;
     }
