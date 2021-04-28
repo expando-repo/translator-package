@@ -23,7 +23,8 @@ class Language
         lt_LT = 'lt_LT',
         en_US = 'en_US',
         ru_RU = 'ru_RU',
-        es_ES = 'es_ES'
+        es_ES = 'es_ES',
+        nl_NL = 'nl_NL'
     ;
 
     public static function getAll(): array
@@ -46,6 +47,7 @@ class Language
             self::en_US,
             self::ru_RU,
             self::es_ES,
+            self::nl_NL,
         ];
     }
 }
