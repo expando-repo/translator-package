@@ -28,10 +28,9 @@ class Translator
      */
     public function isLogged(): bool
     {
-        if (!$this->access_token || !$this->refresh_token) {
+        if (!$this->access_token) {
             return false;
         }
-
         return true;
     }
 
@@ -67,6 +66,9 @@ class Translator
      */
     public function isTokenExpired()
     {
+        if (!$this->expires) {
+            return false;
+        }
         return $this->isLogged() && $this->expires < time();
     }
 
