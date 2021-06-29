@@ -20,11 +20,20 @@ class ProductRequest extends Base implements IRequest
     private string $language_from;
     private string $language_to;
     private array $addon_data = [];
+    private bool $analysis = false;
 
     const
         CATEGORY_IMAGE_URL = 'image-url',
         CATEGORY_PRODUCT_URL = 'product-url'
     ;
+
+    /**
+     * @param bool $analysis
+     */
+    public function setAnalysis(bool $analysis): void
+    {
+        $this->analysis = $analysis;
+    }
 
     /**
      * @param string|null $product_id
@@ -128,6 +137,7 @@ class ProductRequest extends Base implements IRequest
             'language_from' => $this->language_from,
             'language_to' => $this->language_to,
             'addon_data' => $this->addon_data,
+            'analysis' => $this->analysis,
         ];
     }
 }

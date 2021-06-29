@@ -15,10 +15,19 @@ class TextRequest extends Base implements IRequest
     private string $language_from;
     private string $language_to;
     private array $addon_data = [];
+    private bool $analysis = false;
 
     private ?int $project_id = null;
     private ?string $custom_name = null;
     private ?string $custom_id = null;
+
+    /**
+     * @param bool $analysis
+     */
+    public function setAnalysis(bool $analysis): void
+    {
+        $this->analysis = $analysis;
+    }
 
     /**
      * @param int|null $project_id
@@ -118,6 +127,7 @@ class TextRequest extends Base implements IRequest
             'language_from' => $this->language_from,
             'language_to' => $this->language_to,
             'addon_data' => $this->addon_data,
+            'analysis' => $this->analysis,
         ];
     }
 }
