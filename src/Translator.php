@@ -216,6 +216,26 @@ class Translator
 
     /**
      * @param string $hash
+     * @return Project\AnalysisResponse[]
+     * @throws TranslatorException
+     */
+    public function getAnalysisData(int $projectId): array
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/project-analysis/' . $projectId . '/', 'GET');
+
+        $result = [];
+        foreach ($data['data'] ?? [] as $language => $item) {
+            $result[$language] = new Project\AnalysisResponse($item);
+        }
+        return $result;
+    }
+
+    /**
+     * @param string $hash
      * @return Product\GetResponse
      * @throws TranslatorException
      */
