@@ -15,16 +15,16 @@ class TextRequest extends Base implements IRequest
     private string $language_from;
     private string $language_to;
     private array $addon_data = [];
-    private bool $analysis = false;
+    private ?string $analysis = null;
 
     private ?int $project_id = null;
     private ?string $custom_name = null;
     private ?string $custom_id = null;
 
     /**
-     * @param bool $analysis
+     * @param string|null $analysis
      */
-    public function setAnalysis(bool $analysis): void
+    public function setAnalysis(?string $analysis): void
     {
         $this->analysis = $analysis;
     }

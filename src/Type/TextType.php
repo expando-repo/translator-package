@@ -22,6 +22,7 @@ class TextType
         return [
             self::PRODUCT_TITLE,
             self::PRODUCT_DESCRIPTION,
+            self::PRODUCT_DESCRIPTION2,
             self::PRODUCT_DESCRIPTION_SHORT,
             self::PRODUCT_PARAMETER,
             self::PRODUCT_DIMENSION_TABLE,
