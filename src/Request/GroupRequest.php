@@ -64,9 +64,29 @@ class GroupRequest extends Base implements IRequest
         $this->language_to = $language_to;
     }
 
-    public function addText(string $key, string $value)
+    /**
+     * @param string $key
+     * @param string $value
+     * @param string|null $text_type
+     * @throws TranslatorException
+     */
+    public function addText(string $key, string $value, ?string $text_type = null)
     {
-        $this->texts[$key] = $value;
+        foreach ($this->texts as $items) {
+            if ($items[$key] ?? null) {
+                throw new TranslatorException('The "' . $key . '" key already exists');
+            }
+        }
+
+        if ($text_type) {
+            if (!in_array($text_type, TextType::getAll())) {
+                throw new TranslatorException('Text type is not valid');
+            }
+            $this->texts[$text_type][$key] = $value;
+        }
+        else {
+            $this->texts['--default--'][$key] = $value;
+        }
     }
 
     /**
@@ -110,8 +130,13 @@ class GroupRequest extends Base implements IRequest
 
     public function asArray(): array
     {
+        $defaultTexts = $this->texts['--default--'] ?? [];
+
+        unset($this->texts['--default--']);
+        $textsByTextType = $this->texts;
         return [
-            'texts' => $this->texts,
+            'texts' => $defaultTexts,
+            'texts_by_text_type' =>$textsByTextType,
             'custom_name' => $this->custom_name,
             'custom_id' => $this->custom_id,
             'text_type' => $this->text_type,

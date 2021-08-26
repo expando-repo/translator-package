@@ -15,6 +15,7 @@ class TextType
         PRODUCT_PARAMETER = 'product_parameter',
         PRODUCT_CATEGORY = 'category',
         TAG = 'tag',
+        OTHER_DESCRIPTION = 'other_description',
         OTHER = 'other';
 
     public static function getAll(): array
@@ -28,6 +29,7 @@ class TextType
             self::PRODUCT_DIMENSION_TABLE,
             self::PRODUCT_CATEGORY,
             self::TAG,
+            self::OTHER_DESCRIPTION,
             self::OTHER,
         ];
     }
