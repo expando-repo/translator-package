@@ -9,9 +9,11 @@ use Expando\Translator\Request\GroupRequest;
 use Expando\Translator\Request\ProductRequest;
 use Expando\Translator\Request\SkipTextRequest;
 use Expando\Translator\Request\TextRequest;
+use Expando\Translator\Request\TranslationFilterRequest;
 use Expando\Translator\Response\PostResponse;
 use Expando\Translator\Response\Product;
 use Expando\Translator\Response\Project;
+use Expando\Translator\Response\Translation;
 use Expando\Translator\Response\Text;
 use Expando\Translator\Response\Group;
 
@@ -336,6 +338,40 @@ class Translator
     }
 
     /**
+     * @return Translation\ListResponse
+     * @throws TranslatorException
+     */
+    public function listTranslations(int $page = 1, int $onPage = 20, ?string $sort = null, ?bool $sortDesc = null, ?TranslationFilterRequest $filter = null): Translation\ListResponse
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/translations/', 'GET', array_filter([
+            'page' => $page,
+            'on-page' => $onPage,
+            'sort' => $sort,
+            'sort-desc' => $sortDesc !== null ? (int) $sortDesc : null,
+            'filter' => $filter ? array_filter($filter->asArray()) : [],
+        ]));
+        return new Translation\ListResponse($data);
+    }
+
+    /**
+     * @return Translation\ListLanguageResponse
+     * @throws TranslatorException
+     */
+    public function listTranslationLanguages(): Translation\ListLanguageResponse
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/translations/languages/', 'GET');
+        return new Translation\ListLanguageResponse($data);
+    }
+
+    /**
      * @param string $action
      * @param $method
      * @param array $body
@@ -350,7 +386,11 @@ class Translator
             'Authorization: Bearer ' . $this->access_token,
         );
 
-        $ch = curl_init( $this->url . '/api' . $action);
+        $url = $this->url . '/api' . $action;
+        if (!empty($body) && $method === 'GET') {
+            $url .= '?' . http_build_query($body);
+        }
+        $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
