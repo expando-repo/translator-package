@@ -372,6 +372,21 @@ class Translator
     }
 
     /**
+     * @param int $id
+     * @return bool
+     * @throws TranslatorException
+     */
+    public function checkedTranslation(int $id): bool
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/translations/checked/' . $id . '/', 'PUT');
+        return $data['status'] === 'success';
+    }
+
+    /**
      * @param string $action
      * @param $method
      * @param array $body
