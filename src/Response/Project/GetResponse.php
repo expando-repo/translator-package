@@ -41,6 +41,14 @@ class GetResponse implements IResponse
     /**
      * @return string
      */
+    public function getUser(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
