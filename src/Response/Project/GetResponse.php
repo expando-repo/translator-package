@@ -25,6 +25,7 @@ class GetResponse implements IResponse
             throw new TranslatorException('Response product not return id');
         }
         $this->id = $data['id'];
+        $this->user = $data['user'];
         $this->name = $data['name'];
         $this->level = $data['level'];
         $this->default = $data['default'];
@@ -43,7 +44,7 @@ class GetResponse implements IResponse
      */
     public function getUser(): string
     {
-        return $this->name;
+        return $this->user;
     }
 
     /**
