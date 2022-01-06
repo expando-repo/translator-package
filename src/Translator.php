@@ -237,6 +237,21 @@ class Translator
     }
 
     /**
+     * @param int $projectId
+     * @return bool
+     * @throws TranslatorException
+     */
+    public function deleteAnalysisData(int $projectId): bool
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/project-analysis/delete/' . $projectId . '/', 'DELETE');
+        return $data['status'] === 'success';
+    }
+
+    /**
      * @param string $hash
      * @return Product\GetResponse
      * @throws TranslatorException

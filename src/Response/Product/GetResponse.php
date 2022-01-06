@@ -16,6 +16,7 @@ class GetResponse implements IResponse
     protected ?string $description2 = null;
     protected ?string $description_short = null;
     protected string $language;
+    protected int $word_count;
     protected string $status;
     protected string $hash;
 
@@ -37,6 +38,15 @@ class GetResponse implements IResponse
         $this->description = $data[TextType::PRODUCT_DESCRIPTION] ?? null;
         $this->description2 = $data[TextType::PRODUCT_DESCRIPTION2] ?? null;
         $this->description_short = $data[TextType::PRODUCT_DESCRIPTION_SHORT] ?? null;
+        $this->word_count = $data['word_count'] ?? 0;
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function getWordCount()
+    {
+        return $this->word_count;
     }
 
     /**

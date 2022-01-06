@@ -13,6 +13,7 @@ class GetResponse implements IResponse
     protected ?string $custom_name = null;
     protected array $texts = [];
     protected string $language;
+    protected int $word_count;
     protected string $status;
     protected string $hash;
 
@@ -32,6 +33,15 @@ class GetResponse implements IResponse
         $this->custom_id = $data['custom_id'] ?? null;
         $this->custom_name = $data['custom_name'] ?? null;
         $this->texts = $data['texts'] ?? [];
+        $this->word_count = $data['word_count'] ?? 0;
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function getWordCount()
+    {
+        return $this->word_count;
     }
 
     /**
