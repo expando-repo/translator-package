@@ -16,6 +16,8 @@ class GetResponse implements IResponse
     protected int $word_count;
     protected string $status;
     protected string $hash;
+    protected int $project_id;
+    protected string $project_level;
 
     /**
      * ProductPostResponse constructor.
@@ -34,6 +36,24 @@ class GetResponse implements IResponse
         $this->custom_name = $data['custom_name'] ?? null;
         $this->texts = $data['texts'] ?? [];
         $this->word_count = $data['word_count'] ?? 0;
+        $this->project_id = $data['project_id'] ?? 0;
+        $this->project_level = $data['project_level'] ?? 0;
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function getProjectId()
+    {
+        return $this->project_id;
+    }
+
+    /**
+     * @return int|mixed|string
+     */
+    public function getProjectLevel()
+    {
+        return $this->project_level;
     }
 
     /**
