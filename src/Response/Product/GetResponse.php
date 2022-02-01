@@ -42,7 +42,7 @@ class GetResponse implements IResponse
         $this->description_short = $data[TextType::PRODUCT_DESCRIPTION_SHORT] ?? null;
         $this->word_count = $data['word_count'] ?? 0;
         $this->project_id = $data['project_id'] ?? 0;
-        $this->project_level = $data['project_level'] ?? 0;
+        $this->project_level = $data['project_level'] ?? '';
     }
 
     /**
