@@ -25,7 +25,8 @@ class Language
         ru_RU = 'ru_RU',
         es_ES = 'es_ES',
         nl_NL = 'nl_NL',
-        da_DK = 'da_DK'
+        da_DK = 'da_DK',
+        bg_BG = 'bg_BG'
     ;
 
     public static function getAll(): array
@@ -50,6 +51,7 @@ class Language
             self::es_ES,
             self::nl_NL,
             self::da_DK,
+            self::bg_BG,
         ];
     }
 }
