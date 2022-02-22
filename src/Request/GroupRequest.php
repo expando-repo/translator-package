@@ -16,18 +16,18 @@ class GroupRequest extends Base implements IRequest
     private string $language_from;
     private string $language_to;
     private array $addon_data = [];
-    private ?string $analysis = null;
+    private ?string $analysisHash = null;
 
     private ?int $project_id = null;
     private ?string $custom_name = null;
     private ?string $custom_id = null;
 
     /**
-     * @param string|null $analysis
+     * @param string|null $analysisHash
      */
-    public function setAnalysis(?string $analysis): void
+    public function setAnalysisHash(?string $analysisHash): void
     {
-        $this->analysis = $analysis;
+        $this->analysisHash = $analysisHash;
     }
 
     /**
@@ -144,7 +144,7 @@ class GroupRequest extends Base implements IRequest
             'language_from' => $this->language_from,
             'language_to' => $this->language_to,
             'addon_data' => $this->addon_data,
-            'analysis' => $this->analysis,
+            'analysis_hash' => $this->analysisHash,
         ];
     }
 }

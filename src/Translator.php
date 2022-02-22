@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Expando\Translator;
 
 use Expando\Translator\Exceptions\TranslatorException;
+use Expando\Translator\Request\AnalysisRequest;
 use Expando\Translator\Request\GroupRequest;
 use Expando\Translator\Request\ProductRequest;
 use Expando\Translator\Request\SkipTextRequest;
@@ -144,6 +145,10 @@ class Translator
             $data = $this->sendToTranslator('/groups/', 'POST', $request->asArray());
             $result = new PostResponse($data);
         }
+        else if ($request instanceof AnalysisRequest) {
+            $data = $this->sendToTranslator('/analysis/', 'POST', $request->asArray());
+            $result = new PostResponse($data);
+        }
         else {
             throw new TranslatorException('Request not defined');
         }
@@ -168,6 +173,21 @@ class Translator
         else {
             throw new TranslatorException('Request not defined');
         }
+        return $data['status'] === 'success';
+    }
+
+    /**
+     * @param Product\GetResponse $product
+     * @return bool
+     * @throws TranslatorException
+     */
+    public function analysisReady(string $hash): bool
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/analysis/ready/' . $hash . '/', 'PUT');
         return $data['status'] === 'success';
     }
 
