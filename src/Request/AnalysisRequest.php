@@ -12,8 +12,17 @@ use Expando\Translator\Type\Language;
 class AnalysisRequest extends Base implements IRequest
 {
     private array $productIds;
-    private array $projectIds;
+    private array $methods = [];
     private ?string $type = null;
+
+    public function addMethod(int $projectId, string $languageFrom, string $languageTo)
+    {
+        $this->methods[] = [
+            'project_id' => $projectId,
+            'language_from' => $languageFrom,
+            'language_to' => $languageTo,
+        ];
+    }
 
     /**
      * @param array $productIds
@@ -21,14 +30,6 @@ class AnalysisRequest extends Base implements IRequest
     public function setProductIds(array $productIds): void
     {
         $this->productIds = $productIds;
-    }
-
-    /**
-     * @param array $projectIds
-     */
-    public function setProjectIds(array $projectIds): void
-    {
-        $this->projectIds = $projectIds;
     }
 
     /**
@@ -43,7 +44,7 @@ class AnalysisRequest extends Base implements IRequest
     {
         return [
             'product_ids' => $this->productIds,
-            'project_ids' => $this->projectIds,
+            'methods' => $this->methods,
             'type' => $this->type,
         ];
     }

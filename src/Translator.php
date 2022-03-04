@@ -17,6 +17,7 @@ use Expando\Translator\Response\Project;
 use Expando\Translator\Response\Translation;
 use Expando\Translator\Response\Text;
 use Expando\Translator\Response\Group;
+use Expando\Translator\Response\Analysis;
 
 class Translator
 {
@@ -238,22 +239,17 @@ class Translator
 
     /**
      * @param string $hash
-     * @return Project\AnalysisResponse[]
+     * @return Analysis\GetResponse
      * @throws TranslatorException
      */
-    public function getAnalysisData(int $projectId): array
+    public function getAnalysisData(string $hash): Analysis\GetResponse
     {
         if (!$this->isLogged()) {
             throw new TranslatorException('Translator is not logged');
         }
 
-        $data = $this->sendToTranslator('/project-analysis/' . $projectId . '/', 'GET');
-
-        $result = [];
-        foreach ($data['data'] ?? [] as $language => $item) {
-            $result[$language] = new Project\AnalysisResponse($item);
-        }
-        return $result;
+        $data = $this->sendToTranslator('/analysis/' . $hash . '/', 'GET');
+        return new Analysis\GetResponse($data);
     }
 
     /**
