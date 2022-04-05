@@ -11,7 +11,7 @@ use Expando\Translator\Type\Language;
 
 class AnalysisRequest extends Base implements IRequest
 {
-    private array $productIds;
+    private array $productIds = [];
     private array $methods = [];
     private ?string $type = null;
 
