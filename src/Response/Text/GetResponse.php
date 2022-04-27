@@ -14,6 +14,7 @@ class GetResponse implements IResponse
     protected ?string $text = null;
     protected string $language;
     protected int $word_count;
+    protected array $translateData = [];
     protected string $status;
     protected string $hash;
     protected int $project_id;
@@ -36,8 +37,17 @@ class GetResponse implements IResponse
         $this->custom_name = $data['custom_name'] ?? null;
         $this->text = $data['text'] ?? null;
         $this->word_count = $data['word_count'] ?? 0;
+        $this->translateData = $data['translate_data'] ?? 0;
         $this->project_id = $data['project_id'] ?? 0;
         $this->project_level = $data['project_level'] ?? '';
+    }
+
+    /**
+     * @return array|int|mixed
+     */
+    public function getTranslateData(): mixed
+    {
+        return $this->translateData;
     }
 
     /**
