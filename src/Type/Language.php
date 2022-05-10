@@ -26,7 +26,9 @@ class Language
         es_ES = 'es_ES',
         nl_NL = 'nl_NL',
         da_DK = 'da_DK',
-        bg_BG = 'bg_BG'
+        bg_BG = 'bg_BG',
+        pt_PT = 'pt_PT',
+        el_GR = 'el_GR'
     ;
 
     public static function getAll(): array
@@ -52,6 +54,8 @@ class Language
             self::nl_NL,
             self::da_DK,
             self::bg_BG,
+            self::pt_PT,
+            self::el_GR,
         ];
     }
 }
