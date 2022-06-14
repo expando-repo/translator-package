@@ -43,7 +43,7 @@ class AnalysisRequest extends Base implements IRequest
     public function asArray(): array
     {
         return [
-            'product_ids' => $this->productIds,
+            'product_ids' => json_encode($this->productIds),
             'methods' => $this->methods,
             'type' => $this->type,
         ];
