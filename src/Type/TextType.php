@@ -11,6 +11,7 @@ class TextType
         PRODUCT_DESCRIPTION = 'product_description',
         PRODUCT_DESCRIPTION2 = 'product_description2',
         PRODUCT_DESCRIPTION_SHORT = 'product_description_short',
+        PRODUCT_URL = 'product_url',
         PRODUCT_DIMENSION_TABLE = 'product_dimension_table',
         PRODUCT_PARAMETER = 'product_parameter',
         PRODUCT_CATEGORY = 'category',

@@ -15,6 +15,9 @@ class GetResponse implements IResponse
     protected ?string $description = null;
     protected ?string $description2 = null;
     protected ?string $description_short = null;
+    protected ?string $seo_title = null;
+    protected ?string $seo_description = null;
+    protected ?string $seo_url = null;
     protected string $language;
     protected int $word_count;
     protected array $translateData = [];
@@ -41,6 +44,9 @@ class GetResponse implements IResponse
         $this->description = $data[TextType::PRODUCT_DESCRIPTION] ?? null;
         $this->description2 = $data[TextType::PRODUCT_DESCRIPTION2] ?? null;
         $this->description_short = $data[TextType::PRODUCT_DESCRIPTION_SHORT] ?? null;
+        $this->seo_title = $data['seo_product_title'] ?? null;
+        $this->seo_description = $data['seo_product_description'] ?? null;
+        $this->seo_url = $data['seo_product_url'] ?? null;
         $this->word_count = $data['word_count'] ?? 0;
         $this->translateData = $data['translate_data'] ?? [];
         $this->project_id = $data['project_id'] ?? 0;
@@ -133,6 +139,30 @@ class GetResponse implements IResponse
     public function getDescriptionShort(): ?string
     {
         return $this->description_short;
+    }
+
+    /**
+     * @return mixed|string|null
+     */
+    public function getSeoTitle(): mixed
+    {
+        return $this->seo_title;
+    }
+
+    /**
+     * @return mixed|string|null
+     */
+    public function getSeoDescription(): mixed
+    {
+        return $this->seo_description;
+    }
+
+    /**
+     * @return mixed|string|null
+     */
+    public function getSeoUrl(): mixed
+    {
+        return $this->seo_url;
     }
 
     /**

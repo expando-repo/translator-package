@@ -22,6 +22,10 @@ class GroupRequest extends Base implements IRequest
     private ?string $custom_name = null;
     private ?string $custom_id = null;
 
+    const
+        CATEGORY_IMAGE_URL = 'image-url'
+    ;
+
     /**
      * @param string|null $analysisHash
      */
@@ -126,6 +130,14 @@ class GroupRequest extends Base implements IRequest
     public function setIdentifier(string $custom_name, string $custom_id): void
     {
         $this->setCustom($custom_name, $custom_id);
+    }
+
+    /**
+     * @param string $value
+     */
+    public function addImageUrl(string $value)
+    {
+        $this->addon_data[self::CATEGORY_IMAGE_URL][] = $value;
     }
 
     public function asArray(): array

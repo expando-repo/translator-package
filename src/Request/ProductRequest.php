@@ -17,6 +17,9 @@ class ProductRequest extends Base implements IRequest
     private ?string $description = null;
     private ?string $description2 = null;
     private ?string $description_short = null;
+    private ?string $seo_title = null;
+    private ?string $seo_description = null;
+    private ?string $seo_url = null;
     private string $language_from;
     private string $language_to;
     private array $addon_data = [];
@@ -84,6 +87,30 @@ class ProductRequest extends Base implements IRequest
     }
 
     /**
+     * @param string|null $seo_title
+     */
+    public function setSeoTitle(?string $seo_title): void
+    {
+        $this->seo_title = $seo_title;
+    }
+
+    /**
+     * @param string|null $seo_description
+     */
+    public function setSeoDescription(?string $seo_description): void
+    {
+        $this->seo_description = $seo_description;
+    }
+
+    /**
+     * @param string|null $seo_url
+     */
+    public function setSeoUrl(?string $seo_url): void
+    {
+        $this->seo_url = $seo_url;
+    }
+
+    /**
      * @param string $language_from
      * @throws TranslatorException
      */
@@ -134,6 +161,9 @@ class ProductRequest extends Base implements IRequest
             TextType::PRODUCT_DESCRIPTION => $this->description,
             TextType::PRODUCT_DESCRIPTION2 => $this->description2,
             TextType::PRODUCT_DESCRIPTION_SHORT => $this->description_short,
+            'seo_product_title' => $this->seo_title,
+            'seo_product_description' => $this->seo_description,
+            'seo_product_url' => $this->seo_url,
             'language_from' => $this->language_from,
             'language_to' => $this->language_to,
             'addon_data' => $this->addon_data,
