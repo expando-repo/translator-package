@@ -19,6 +19,7 @@ class GetResponse implements IResponse
     protected int $used_in_texts;
     protected int $checked;
     protected ?string $level;
+    protected array $texts;
 
     /**
      * ProductPostResponse constructor.
@@ -41,6 +42,7 @@ class GetResponse implements IResponse
         $this->used_in_texts = (int) $data['used_in_texts'];
         $this->checked = (int) $data['checked'];
         $this->level = (string) $data['level'];
+        $this->texts = (array) ($data['texts'] ?? []);
     }
 
     /**
@@ -121,5 +123,13 @@ class GetResponse implements IResponse
     public function getLevel(): ?string
     {
         return $this->level;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTexts(): array
+    {
+        return $this->texts;
     }
 }

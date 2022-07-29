@@ -389,6 +389,21 @@ class Translator
     }
 
     /**
+     * @param string $hash
+     * @return Translation\GetResponse
+     * @throws TranslatorException
+     */
+    public function getTranslation(int $id): Translation\GetResponse
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/translations/' . $id . '/', 'GET');
+        return new Translation\GetResponse($data);
+    }
+
+    /**
      * @return Translation\ListLanguageResponse
      * @throws TranslatorException
      */
@@ -418,6 +433,23 @@ class Translator
     }
 
     /**
+     * @param int $id
+     * @return bool
+     * @throws TranslatorException
+     */
+    public function updateTranslation(int $id, string $textTarget): bool
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/translations/update/' . $id . '/', 'PUT', [
+            'text_target' => $textTarget,
+        ]);
+        return $data['status'] === 'success';
+    }
+
+    /**
      * @param string $action
      * @param $method
      * @param array $body
@@ -442,7 +474,7 @@ class Translator
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        if (!empty($body) && $method === 'POST') {
+        if (!empty($body) && in_array($method, ['POST', 'PUT'])) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($body));
         }
         $return = curl_exec($ch);
