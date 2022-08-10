@@ -478,10 +478,11 @@ class Translator
             curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($body));
         }
         $return = curl_exec($ch);
+		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
         if (!$return) {
-            throw new TranslatorException('Translator did not return a correct response');
+            throw new TranslatorException('Translator did not return a correct response (code: ' . $httpcode . ')');
         }
         if ($_GET['debug'] ?? null) {
             echo '<pre>';
