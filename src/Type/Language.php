@@ -27,9 +27,11 @@ class Language
         nl_NL = 'nl_NL',
         da_DK = 'da_DK',
         bg_BG = 'bg_BG',
+        pt_PT = 'pt_PT',
         el_GR = 'el_GR',
         es_ES = 'es_ES',
-        lv_LV = 'lv_LV'
+        lv_LV = 'lv_LV',
+        et_EE = 'et_EE'
     ;
 
     public static function getAll(): array
