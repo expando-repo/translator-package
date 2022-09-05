@@ -29,7 +29,6 @@ class Language
         bg_BG = 'bg_BG',
         pt_PT = 'pt_PT',
         el_GR = 'el_GR',
-        es_ES = 'es_ES',
         lv_LV = 'lv_LV',
         et_EE = 'et_EE'
     ;
@@ -59,7 +58,6 @@ class Language
             self::bg_BG,
             self::pt_PT,
             self::el_GR,
-            self::es_ES,
             self::lv_LV,
             self::et_EE,
         ];
