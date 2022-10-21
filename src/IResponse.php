@@ -6,5 +6,5 @@ namespace Expando\Translator;
 
 interface IResponse
 {
-    public function getHash(): string;
+    
 }
