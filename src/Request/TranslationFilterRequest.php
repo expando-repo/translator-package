@@ -14,6 +14,8 @@ class TranslationFilterRequest
     private ?string $language_from = null;
     private ?string $language_to = null;
     private ?string $fulltext = null;
+    private ?string $textSource = null;
+    private ?string $textTarget = null;
 
 
     /**
@@ -40,12 +42,30 @@ class TranslationFilterRequest
         $this->fulltext = $fulltext;
     }
 
+    /**
+     * @param string|null $textSource
+     */
+    public function setTextSource(?string $textSource): void
+    {
+        $this->textSource = $textSource;
+    }
+
+    /**
+     * @param string|null $textTarget
+     */
+    public function setTextTarget(?string $textTarget): void
+    {
+        $this->textTarget = $textTarget;
+    }
+
     public function asArray(): array
     {
         return [
             'language_from' => $this->language_from,
             'language_to' => $this->language_to,
             'fulltext' => $this->fulltext,
+            'text_source' => $this->textSource,
+            'text_target' => $this->textTarget,
         ];
     }
 }

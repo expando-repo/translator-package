@@ -308,7 +308,8 @@ class Translator
         }
 
         $data = $this->sendToTranslator('/projects/', 'GET');
-        return new Project\ListResponse($data);
+
+        return new \Expando\Translator\Response\Project\ListResponse($data);
     }
 
     /**
