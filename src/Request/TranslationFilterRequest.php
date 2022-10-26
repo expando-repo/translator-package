@@ -16,6 +16,7 @@ class TranslationFilterRequest
     private ?string $fulltext = null;
     private ?string $textSource = null;
     private ?string $textTarget = null;
+    private ?array $requestHashes = null;
 
 
     /**
@@ -58,6 +59,14 @@ class TranslationFilterRequest
         $this->textTarget = $textTarget;
     }
 
+    /**
+     * @param ?array $requestHashes
+     */
+    public function setRequestHash(?array $requestHashes): void
+    {
+        $this->requestHashes = $requestHashes;
+    }
+
     public function asArray(): array
     {
         return [
@@ -66,6 +75,7 @@ class TranslationFilterRequest
             'fulltext' => $this->fulltext,
             'text_source' => $this->textSource,
             'text_target' => $this->textTarget,
+            'request_hashes' => $this->requestHashes,
         ];
     }
 }
