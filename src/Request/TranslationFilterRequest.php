@@ -17,7 +17,7 @@ class TranslationFilterRequest
     private ?string $textSource = null;
     private ?string $textTarget = null;
     private ?array $requestHashes = null;
-
+    private ?string $tab = null;
 
     /**
      * @param string|null $language_from
@@ -67,6 +67,14 @@ class TranslationFilterRequest
         $this->requestHashes = $requestHashes;
     }
 
+    /**
+     * @param string|null $tab
+     */
+    public function setTab(?string $tab): void
+    {
+        $this->tab = $tab;
+    }
+
     public function asArray(): array
     {
         return [
@@ -76,6 +84,7 @@ class TranslationFilterRequest
             'text_source' => $this->textSource,
             'text_target' => $this->textTarget,
             'request_hashes' => $this->requestHashes,
+            'tab' => $this->tab,
         ];
     }
 }
