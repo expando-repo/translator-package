@@ -30,7 +30,8 @@ class Language
         pt_PT = 'pt_PT',
         el_GR = 'el_GR',
         lv_LV = 'lv_LV',
-        et_EE = 'et_EE'
+        et_EE = 'et_EE',
+        vi_VN = 'vi_VN'
     ;
 
     public static function getAll(): array
@@ -60,6 +61,7 @@ class Language
             self::el_GR,
             self::lv_LV,
             self::et_EE,
+            self::vi_VN,
         ];
     }
 }
