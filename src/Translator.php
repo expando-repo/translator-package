@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Expando\Translator;
 
 use Expando\Translator\Exceptions\TranslatorException;
+use Expando\Translator\Exceptions\TranslatorNotFoundException;
 use Expando\Translator\Request\AnalysisRequest;
 use Expando\Translator\Request\GroupRequest;
 use Expando\Translator\Request\ProductRequest;
@@ -497,7 +498,11 @@ class Translator
         }
 
         if ($data['status'] === 'error') {
-            throw new TranslatorException('Response error: ' . ($data['message'] ?? null));
+            if($httpcode == 404) {
+                throw new TranslatorNotFoundException($data['message'] ?? 'Not found');
+            } else {
+                throw new TranslatorException('Response error: ' . ($data['message'] ?? null));
+            }
         }
         return $data;
     }
