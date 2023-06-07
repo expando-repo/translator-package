@@ -7,6 +7,7 @@ namespace Expando\Translator;
 use Expando\Translator\Exceptions\TranslatorException;
 use Expando\Translator\Exceptions\TranslatorNotFoundException;
 use Expando\Translator\Request\AnalysisRequest;
+use Expando\Translator\Request\GlossaryFilterRequest;
 use Expando\Translator\Request\GroupRequest;
 use Expando\Translator\Request\ProductRequest;
 use Expando\Translator\Request\SkipTextRequest;
@@ -16,6 +17,7 @@ use Expando\Translator\Response\PostResponse;
 use Expando\Translator\Response\Product;
 use Expando\Translator\Response\Project;
 use Expando\Translator\Response\Translation;
+use Expando\Translator\Response\Glossary;
 use Expando\Translator\Response\Text;
 use Expando\Translator\Response\Group;
 use Expando\Translator\Response\Analysis;
@@ -388,6 +390,20 @@ class Translator
             'filter' => $filter ? array_filter($filter->asArray()) : [],
         ]));
         return new Translation\ListResponse($data);
+    }
+
+    public function listGlossaryItems(int $page = 1, int $onPage = 20, ?GlossaryFilterRequest $filter = null): Glossary\ListResponse
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/glossary/', 'GET', array_filter([
+            'page' => $page,
+            'on-page' => $onPage,
+            'filter' => $filter ? array_filter($filter->asArray()) : [],
+        ]));
+        return new Glossary\ListResponse($data);
     }
 
     /**
