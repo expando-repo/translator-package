@@ -13,7 +13,7 @@ class GetResponse implements IResponse
     protected string $name;
     protected string $level;
     protected bool $default;
-    protected int $user;
+    protected mixed $user;
 
     /**
      * ProductPostResponse constructor.
@@ -41,9 +41,9 @@ class GetResponse implements IResponse
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getUser(): string
+    public function getUser(): mixed
     {
         return $this->user;
     }
