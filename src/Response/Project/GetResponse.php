@@ -13,7 +13,7 @@ class GetResponse implements IResponse
     protected string $name;
     protected string $level;
     protected bool $default;
-    protected string $user;
+    protected int $user;
 
     /**
      * ProductPostResponse constructor.
