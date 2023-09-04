@@ -17,6 +17,7 @@ class TextType
         PRODUCT_CATEGORY = 'category',
         TAG = 'tag',
         OTHER_DESCRIPTION = 'other_description',
+        REVIEW = 'review',
         OTHER = 'other';
 
     public static function getAll(): array
@@ -31,6 +32,7 @@ class TextType
             self::PRODUCT_CATEGORY,
             self::TAG,
             self::OTHER_DESCRIPTION,
+            self::REVIEW,
             self::OTHER,
         ];
     }
