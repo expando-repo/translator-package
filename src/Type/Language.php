@@ -32,7 +32,7 @@ class Language
         lv_LV = 'lv_LV',
         et_EE = 'et_EE',
         vi_VN = 'vi_VN',
-        se_SE = 'se_SE',
+        sv_SE = 'sv_SE',
         fi_FI = 'fi_FI'
     ;
 
@@ -64,7 +64,7 @@ class Language
             self::lv_LV,
             self::et_EE,
             self::vi_VN,
-            self::se_SE,
+            self::sv_SE,
             self::fi_FI,
         ];
     }
