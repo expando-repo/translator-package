@@ -33,7 +33,8 @@ class Language
         et_EE = 'et_EE',
         vi_VN = 'vi_VN',
         sv_SE = 'sv_SE',
-        fi_FI = 'fi_FI'
+        fi_FI = 'fi_FI',
+        nb_NO = 'nb_NO'
     ;
 
     public static function getAll(): array
@@ -66,6 +67,7 @@ class Language
             self::vi_VN,
             self::sv_SE,
             self::fi_FI,
+            self::nb_NO,
         ];
     }
 }
