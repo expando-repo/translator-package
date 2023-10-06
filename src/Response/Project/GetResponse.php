@@ -13,6 +13,7 @@ class GetResponse implements IResponse
     protected string $name;
     protected string $level;
     protected bool $default;
+    protected bool $remote;
 
     /**
      * ProductPostResponse constructor.
@@ -29,6 +30,7 @@ class GetResponse implements IResponse
         $this->name = $data['name'];
         $this->level = $data['level'];
         $this->default = $data['default'];
+        $this->remote = $data['remote'];
     }
 
     /**
@@ -69,5 +71,13 @@ class GetResponse implements IResponse
     public function isDefault(): bool
     {
         return $this->default;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRemote(): bool
+    {
+        return $this->remote;
     }
 }
