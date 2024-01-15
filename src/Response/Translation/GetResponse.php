@@ -18,6 +18,7 @@ class GetResponse implements IResponse
     protected ?string $text_target;
     protected int $used_in_texts;
     protected int $checked;
+    protected bool $is_import;
     protected ?string $level;
     protected array $texts;
 
@@ -42,6 +43,7 @@ class GetResponse implements IResponse
         $this->used_in_texts = (int) $data['used_in_texts'];
         $this->checked = (int) $data['checked'];
         $this->level = (string) $data['level'];
+        $this->is_import = (bool) $data['is_import'];
         $this->texts = (array) ($data['texts'] ?? []);
     }
 
@@ -131,5 +133,10 @@ class GetResponse implements IResponse
     public function getTexts(): array
     {
         return $this->texts;
+    }
+
+    public function isImport(): bool
+    {
+        return $this->is_import;
     }
 }
