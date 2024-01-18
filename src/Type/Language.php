@@ -34,7 +34,14 @@ class Language
         vi_VN = 'vi_VN',
         sv_SE = 'sv_SE',
         fi_FI = 'fi_FI',
-        nb_NO = 'nb_NO'
+        nb_NO = 'nb_NO',
+        is_IS = 'is_IS',
+        ka_GE = 'ka_GE',
+        sr_Cyrl_RS = 'sr_Cyrl_RS',
+        id_ID = 'id_ID',
+        ja_JP = 'ja_JP',
+        mt_MT = 'mt_MT',
+        tr_TR = 'tr_TR'
     ;
 
     public static function getAll(): array
@@ -68,6 +75,13 @@ class Language
             self::sv_SE,
             self::fi_FI,
             self::nb_NO,
+            self::is_IS,
+            self::ka_GE,
+            self::sr_Cyrl_RS,
+            self::id_ID,
+            self::ja_JP,
+            self::mt_MT,
+            self::tr_TR,
         ];
     }
 }
