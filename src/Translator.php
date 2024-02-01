@@ -28,7 +28,7 @@ class Translator
     private ?string $access_token = null;
     private ?string $refresh_token = null;
     private ?int $expires = null;
-    private string $url = 'https://translator.expan.do';
+    private string $url = 'https://translator-app.expan.do';
 
     /**
      * @return bool
