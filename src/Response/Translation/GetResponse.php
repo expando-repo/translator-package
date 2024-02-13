@@ -21,6 +21,11 @@ class GetResponse implements IResponse
     protected bool $is_import;
     protected ?string $level;
     protected array $texts;
+    protected array $used_glossary = [];
+    protected array $used_brands = [];
+    protected bool $is_edited_by_user = false;
+    protected string $translated_type;
+    protected bool $translated_type_imported = false;
 
     /**
      * ProductPostResponse constructor.
@@ -45,6 +50,51 @@ class GetResponse implements IResponse
         $this->level = (string) $data['level'];
         $this->is_import = (bool) $data['is_import'];
         $this->texts = (array) ($data['texts'] ?? []);
+        $this->used_glossary = (array) $data['used_glossary'];
+        $this->used_brands = (array) $data['used_brands'];
+        $this->is_edited_by_user = (bool) $data['is_edited_by_user'];
+        $this->translated_type = (string) $data['translated_type'];
+        $this->translated_type_imported = (bool) $data['translated_type_imported'];
+    }
+
+    /**
+     * @return bool
+     */
+    public function getTranslatedTypeImported(): bool
+    {
+        return $this->translated_type_imported;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTranslatedType(): string
+    {
+        return $this->translated_type;
+    }
+
+    /**
+     * @return array
+     */
+    public function getUsedBrands(): array
+    {
+        return $this->used_brands;
+    }
+
+    /**
+     * @return array
+     */
+    public function getUsedGlossary(): array
+    {
+        return $this->used_glossary;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsEditedByUser(): bool
+    {
+        return $this->is_edited_by_user;
     }
 
     /**

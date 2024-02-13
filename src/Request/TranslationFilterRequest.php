@@ -18,6 +18,13 @@ class TranslationFilterRequest
     private ?string $textTarget = null;
     private ?array $requestHashes = null;
     private ?string $tab = null;
+    private bool $withTexts = false;
+    private ?array $textTargets = null;
+
+    public function setWithTexts(): void
+    {
+        $this->withTexts = true;
+    }
 
     /**
      * @param string|null $language_from
@@ -68,6 +75,14 @@ class TranslationFilterRequest
     }
 
     /**
+     * @param array|null $textTargets
+     */
+    public function setTextTargets(?array $textTargets = null): void
+    {
+        $this->textTargets = $textTargets;
+    }
+
+    /**
      * @param string|null $tab
      */
     public function setTab(?string $tab): void
@@ -83,8 +98,10 @@ class TranslationFilterRequest
             'fulltext' => $this->fulltext,
             'text_source' => $this->textSource,
             'text_target' => $this->textTarget,
+            'text_targets' => $this->textTargets,
             'request_hashes' => $this->requestHashes,
             'tab' => $this->tab,
+            'with_texts' => $this->withTexts ? 1 : 0,
         ];
     }
 }
