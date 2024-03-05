@@ -24,6 +24,7 @@ class ProductRequest extends Base implements IRequest
     private string $language_to;
     private array $addon_data = [];
     private ?string $analysisHash = null;
+    private ?array $customData = null;
 
     const
         CATEGORY_IMAGE_URL = 'image-url',
@@ -36,6 +37,16 @@ class ProductRequest extends Base implements IRequest
     public function setAnalysisHash(?string $analysisHash): void
     {
         $this->analysisHash = $analysisHash;
+    }
+
+    /**
+     * @param string $key
+     * @param string $value
+     * @return void
+     */
+    public function addCustomData(string $key, string $value)
+    {
+        $this->customData[$key] = $value;
     }
 
     /**
@@ -168,6 +179,7 @@ class ProductRequest extends Base implements IRequest
             'language_to' => $this->language_to,
             'addon_data' => $this->addon_data,
             'analysis_hash' => $this->analysisHash,
+            'custom_data' => $this->customData,
         ];
     }
 }
