@@ -474,7 +474,7 @@ class Translator
      * @return array
      * @throws TranslatorException
      */
-    public function sendToTranslator(string $action, $method, array $body = []): array
+    public function sendToTranslator(string $action, $method, array $body = [], int $try = 0): array
     {
         $headers = array(
             'Content-Type' => 'application/json',
@@ -500,6 +500,10 @@ class Translator
         curl_close($ch);
 
         if (!$return) {
+            if ($httpcode == 0 && $try < 3) {
+                sleep($try + rand(1,5));
+                return $this->sendToTranslator($action, $method, $body, ++$try);
+            }
             throw new TranslatorException('Translator did not return a correct response (code: ' . $httpcode . ')');
         }
         if ($_GET['debug'] ?? null) {
