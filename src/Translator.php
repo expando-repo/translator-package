@@ -452,6 +452,7 @@ class Translator
 
     /**
      * @param int $id
+     * @param string $textTarget
      * @return bool
      * @throws TranslatorException
      */
@@ -464,6 +465,21 @@ class Translator
         $data = $this->sendToTranslator('/translations/update/' . $id . '/', 'PUT', [
             'text_target' => $textTarget,
         ]);
+        return $data['status'] === 'success';
+    }
+
+    /**
+     * @param int $id
+     * @return bool
+     * @throws TranslatorException
+     */
+    public function deleteTranslation(int $id): bool
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/translations/delete/' . $id . '/', 'DELETE');
         return $data['status'] === 'success';
     }
 
