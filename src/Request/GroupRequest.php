@@ -21,6 +21,7 @@ class GroupRequest extends Base implements IRequest
     private ?int $project_id = null;
     private ?string $custom_name = null;
     private ?string $custom_id = null;
+    private ?array $customData = null;
 
     const
         CATEGORY_IMAGE_URL = 'image-url'
@@ -93,6 +94,11 @@ class GroupRequest extends Base implements IRequest
         }
     }
 
+    public function addCustomData(string $key, string $value)
+    {
+        $this->customData[$key] = $value;
+    }
+
     /**
      * @param string $text_type
      * @throws TranslatorException
@@ -157,6 +163,7 @@ class GroupRequest extends Base implements IRequest
             'language_to' => $this->language_to,
             'addon_data' => $this->addon_data,
             'analysis_hash' => $this->analysisHash,
+            'custom_data' => $this->customData,
         ];
     }
 }
