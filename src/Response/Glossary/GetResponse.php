@@ -14,6 +14,7 @@ class GetResponse implements IResponse
     protected string $language_to;
     protected string $text_source;
     protected ?string $text_target;
+    protected ?array $limitation;
 
     /**
      * ProductPostResponse constructor.
@@ -31,6 +32,7 @@ class GetResponse implements IResponse
         $this->language_to = (string) $data['language_to'];
         $this->text_source = (string) $data['text_source'];
         $this->text_target = $data['text_target'];
+        $this->limitation = $data['limitation'];
     }
 
     /**
@@ -72,5 +74,10 @@ class GetResponse implements IResponse
     public function getTextTarget(): ?string
     {
         return $this->text_target;
+    }
+
+    public function getLimitation(): ?array
+    {
+        return $this->limitation;
     }
 }
