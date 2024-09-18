@@ -17,6 +17,7 @@ class TextType
         PRODUCT_CATEGORY = 'category',
         TAG = 'tag',
         OTHER_DESCRIPTION = 'other_description',
+        CONTENT = 'content',
         REVIEW = 'review',
         OTHER = 'other';
 
@@ -32,6 +33,7 @@ class TextType
             self::PRODUCT_CATEGORY,
             self::TAG,
             self::OTHER_DESCRIPTION,
+            self::CONTENT,
             self::REVIEW,
             self::OTHER,
         ];
