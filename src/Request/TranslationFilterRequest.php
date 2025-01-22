@@ -17,6 +17,7 @@ class TranslationFilterRequest
     private ?string $textSource = null;
     private ?string $textTarget = null;
     private ?array $requestHashes = null;
+    private ?array $idNotIn = null;
     private ?string $tab = null;
     private bool $withTexts = false;
     private ?array $textTargets = null;
@@ -40,6 +41,11 @@ class TranslationFilterRequest
     public function setLanguageTo(?string $language_to): void
     {
         $this->language_to = $language_to;
+    }
+
+    public function setIdNotIn(?array $idNotIn): void
+    {
+        $this->idNotIn = $idNotIn;
     }
 
     /**
@@ -100,6 +106,7 @@ class TranslationFilterRequest
             'text_target' => $this->textTarget,
             'text_targets' => $this->textTargets,
             'request_hashes' => $this->requestHashes,
+            'id_not_in' => $this->idNotIn,
             'tab' => $this->tab,
             'with_texts' => $this->withTexts ? 1 : 0,
         ];
