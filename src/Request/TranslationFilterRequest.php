@@ -14,6 +14,8 @@ class TranslationFilterRequest
     private ?string $language_from = null;
     private ?string $language_to = null;
     private ?string $fulltext = null;
+    private ?string $fulltextTarget = null;
+    private ?string $fulltextSource = null;
     private ?string $textSource = null;
     private ?string $textTarget = null;
     private ?array $requestHashes = null;
@@ -54,6 +56,16 @@ class TranslationFilterRequest
     public function setFulltext(?string $fulltext): void
     {
         $this->fulltext = $fulltext;
+    }
+
+    public function setFulltextTarget(?string $fulltextTarget): void
+    {
+        $this->fulltextTarget = $fulltextTarget;
+    }
+
+    public function setFulltextSource(?string $fulltextSource): void
+    {
+        $this->fulltextSource = $fulltextSource;
     }
 
     /**
@@ -102,6 +114,8 @@ class TranslationFilterRequest
             'language_from' => $this->language_from,
             'language_to' => $this->language_to,
             'fulltext' => $this->fulltext,
+            'fulltext_source' => $this->fulltextSource,
+            'fulltext_target' => $this->fulltextTarget,
             'text_source' => $this->textSource,
             'text_target' => $this->textTarget,
             'text_targets' => $this->textTargets,
