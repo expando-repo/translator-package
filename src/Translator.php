@@ -484,6 +484,39 @@ class Translator
     }
 
     /**
+     * @param array $data
+     * @return array
+     * @throws TranslatorException
+     */
+    public function updateClientTranslationSetting(array $data): array
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/update-client-translate-setting', 'POST', ['data' => $data]);
+
+        return $data['data'] ?? [];
+    }
+
+    /**
+     * @param array|null $keys
+     * @return array
+     * @throws TranslatorException
+     */
+    public function clientTranslationSetting(?array $keys = null): array
+    {
+        if (!$this->isLogged()) {
+            throw new TranslatorException('Translator is not logged');
+        }
+
+        $data = $this->sendToTranslator('/client-translate-setting', 'GET');
+
+        return $data['data'] ?? [];
+    }
+
+
+    /**
      * @param string $action
      * @param $method
      * @param array $body
