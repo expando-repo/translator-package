@@ -12,6 +12,7 @@ class GetResponse implements IResponse
 {
     protected ?string $product_id = null;
     protected ?string $title = null;
+    protected ?string $additional_name = null;
     protected ?string $description = null;
     protected ?string $description2 = null;
     protected ?string $description_short = null;
@@ -41,6 +42,7 @@ class GetResponse implements IResponse
         $this->product_id = $data['product_id'] ?? null;
         $this->language = $data['language'];
         $this->title = $data[TextType::PRODUCT_TITLE] ?? null;
+        $this->additional_name = $data['additional_name'] ?? null;
         $this->description = $data[TextType::PRODUCT_DESCRIPTION] ?? null;
         $this->description2 = $data[TextType::PRODUCT_DESCRIPTION2] ?? null;
         $this->description_short = $data[TextType::PRODUCT_DESCRIPTION_SHORT] ?? null;
@@ -115,6 +117,14 @@ class GetResponse implements IResponse
     public function getTitle(): ?string
     {
         return $this->title;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAdditionalName(): ?string
+    {
+        return $this->additional_name;
     }
 
     /**

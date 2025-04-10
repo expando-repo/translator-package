@@ -20,6 +20,7 @@
             $product = new \Expando\Translator\Request\ProductRequest();
             $product->setProductId(rand(1000, 9999));
             $product->setTitle($_POST['product_title']);
+            $product->setAdditionalName($_POST['additional_name']);
             $product->setDescription($_POST['product_description']);
             $product->setDescription2($_POST['product_description2'] ?? null);
             $product->setLanguageFrom(\Expando\Translator\Type\Language::cs_CZ);
