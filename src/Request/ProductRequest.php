@@ -19,6 +19,7 @@ class ProductRequest extends Base implements IRequest
     private ?string $description2 = null;
     private ?string $description_short = null;
     private ?string $seo_title = null;
+    private ?string $seo_keywords = null;
     private ?string $seo_description = null;
     private ?string $seo_url = null;
     private string $language_from;
@@ -144,6 +145,16 @@ class ProductRequest extends Base implements IRequest
     }
 
     /**
+     * @param string|null $seo_keywords
+     * @return void
+     */
+    public function setSeoKeywords(?string $seo_keywords): void
+    {
+        $this->seo_keywords = $seo_keywords;
+    }
+
+
+    /**
      * @param string $language_to
      * @throws TranslatorException
      */
@@ -185,6 +196,7 @@ class ProductRequest extends Base implements IRequest
             'seo_product_title' => $this->seo_title,
             'seo_product_description' => $this->seo_description,
             'seo_product_url' => $this->seo_url,
+            'seo_product_keywords' => $this->seo_keywords,
             'language_from' => $this->language_from,
             'language_to' => $this->language_to,
             'addon_data' => $this->addon_data,

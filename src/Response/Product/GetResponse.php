@@ -19,6 +19,7 @@ class GetResponse implements IResponse
     protected ?string $seo_title = null;
     protected ?string $seo_description = null;
     protected ?string $seo_url = null;
+    protected ?string $seo_keywords = null;
     protected string $language;
     protected int $word_count;
     protected array $translateData = [];
@@ -49,6 +50,7 @@ class GetResponse implements IResponse
         $this->seo_title = $data['seo_product_title'] ?? null;
         $this->seo_description = $data['seo_product_description'] ?? null;
         $this->seo_url = $data['seo_product_url'] ?? null;
+        $this->seo_keywords = $data['seo_product_keywords'] ?? null;
         $this->word_count = $data['word_count'] ?? 0;
         $this->translateData = $data['translate_data'] ?? [];
         $this->project_id = $data['project_id'] ?? 0;
@@ -165,6 +167,14 @@ class GetResponse implements IResponse
     public function getSeoDescription(): mixed
     {
         return $this->seo_description;
+    }
+
+    /**
+     * @return mixed|string|null
+     */
+    public function getSeoKeywords(): mixed
+    {
+        return $this->seo_keywords;
     }
 
     /**
