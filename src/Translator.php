@@ -456,7 +456,7 @@ class Translator
      * @return bool
      * @throws TranslatorException
      */
-    public function updateTranslation(int $id, string $textTarget): bool
+    public function updateTranslation(int $id, string $textTarget, ?string $auto_translator = null): bool
     {
         if (!$this->isLogged()) {
             throw new TranslatorException('Translator is not logged');
@@ -464,6 +464,7 @@ class Translator
 
         $data = $this->sendToTranslator('/translations/update/' . $id . '/', 'PUT', [
             'text_target' => $textTarget,
+            'auto_translator' => $auto_translator,
         ]);
         return $data['status'] === 'success';
     }
