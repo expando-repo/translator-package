@@ -41,7 +41,8 @@ class Language
         id_ID = 'id_ID',
         ja_JP = 'ja_JP',
         mt_MT = 'mt_MT',
-        tr_TR = 'tr_TR'
+        tr_TR = 'tr_TR',
+        de_CH = 'de_CH'
     ;
 
     public static function getAll(): array
@@ -82,6 +83,7 @@ class Language
             self::ja_JP,
             self::mt_MT,
             self::tr_TR,
+            self::de_CH,
         ];
     }
 }
