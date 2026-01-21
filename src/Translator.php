@@ -540,7 +540,7 @@ class Translator
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 120);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         if (!empty($body) && in_array($method, ['POST', 'PUT'])) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($body));
