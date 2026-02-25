@@ -547,6 +547,7 @@ class Translator
         }
         $return = curl_exec($ch);
 		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $info = curl_getinfo($ch);
         curl_close($ch);
 
         if (!$return) {
@@ -563,12 +564,19 @@ class Translator
         $data = (array) json_decode($return, true);
 
         if (!$data || ($data['status'] ?? null) === null) {
+            if (class_exists('\Log')) {
+                \Log::error('Translator-Package error: ', ['curl_info' => $info, 'request' => $url, 'body' => $body, 'response' => $return]);
+            }
             $message = ($data['message'] ?? null);
             throw new TranslatorException('Response data is bad' . ($message ? ' ('.$message.')' : ''));
         }
 
         if ($data['status'] === 'error') {
-            if($httpcode == 404) {
+            // Log error if logging is available
+            if (class_exists('\Log')) {
+                \Log::error(__FILE__.':'.__LINE__, ['curl_info' => $info, 'request' => $url, 'body' => $body, 'response' => $return]);
+            }
+            if ($httpcode == 404) {
                 throw new TranslatorNotFoundException($data['message'] ?? 'Not found');
             } else {
                 throw new TranslatorException('Response error: ' . ($data['message'] ?? null));
