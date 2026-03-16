@@ -565,7 +565,8 @@ class Translator
 
         if (!$data || ($data['status'] ?? null) === null) {
             if (class_exists('\Log')) {
-                \Log::error('Translator-Package error: ', ['curl_info' => $info, 'request' => $url, 'body' => $body, 'response' => $return]);
+                $userId = class_exists('\Auth') && \Auth::check() ? \Auth::id() : null;
+                \Log::error('Translator-Package error: ', ['user_id' => $userId, 'curl_info' => $info, 'request' => $url, 'body' => $body, 'response' => $return]);
             }
             $message = ($data['message'] ?? null);
             throw new TranslatorException('Response data is bad' . ($message ? ' ('.$message.')' : ''));
@@ -574,7 +575,8 @@ class Translator
         if ($data['status'] === 'error') {
             // Log error if logging is available
             if (class_exists('\Log')) {
-                \Log::error(__FILE__.':'.__LINE__, ['curl_info' => $info, 'request' => $url, 'body' => $body, 'response' => $return]);
+                $userId = class_exists('\Auth') && \Auth::check() ? \Auth::id() : null;
+                \Log::error(__FILE__.':'.__LINE__, ['user_id' => $userId, 'curl_info' => $info, 'request' => $url, 'body' => $body, 'response' => $return]);
             }
             if ($httpcode == 404) {
                 throw new TranslatorNotFoundException($data['message'] ?? 'Not found');
