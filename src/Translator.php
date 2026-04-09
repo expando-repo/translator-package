@@ -573,8 +573,9 @@ class Translator
         }
 
         if ($data['status'] === 'error') {
-            // Log error if logging is available
-            if (class_exists('\Log')) {
+            // get-client s 404 je očekávaný stav (ověření, že uživatel neexistuje) — nelogujeme
+            $isExpectedNotFound = $httpcode == 404 && str_contains($action, '/get-client');
+            if (!$isExpectedNotFound && class_exists('\Log')) {
                 $maskedToken = $this->access_token ? (substr($this->access_token, 0, 6) . '***' . substr($this->access_token, -4)) : null;
                 \Log::error(__FILE__.':'.__LINE__, ['access_token' => $maskedToken, 'curl_info' => $info, 'request' => $url, 'body' => $body, 'response' => $return]);
             }
