@@ -18,6 +18,7 @@ class TextType
         TAG = 'tag',
         OTHER_DESCRIPTION = 'other_description',
         CONTENT = 'content',
+        IMAGE_ALT = 'image_alt',
         REVIEW = 'review',
         OTHER = 'other';
 
@@ -31,6 +32,7 @@ class TextType
             self::PRODUCT_PARAMETER,
             self::PRODUCT_DIMENSION_TABLE,
             self::PRODUCT_CATEGORY,
+            self::IMAGE_ALT,
             self::TAG,
             self::OTHER_DESCRIPTION,
             self::CONTENT,
